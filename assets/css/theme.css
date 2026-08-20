@@ -71,7 +71,7 @@ body.home:not(.has-article) .wash { background: rgba(255, 255, 255, 0.06); }
   line-height: 0;
 }
 .logo img {
-  height: 52px;
+  height: 74px;
   width: auto;
   display: block;
 }
@@ -526,7 +526,7 @@ th { font-weight: 650; }
 
 @media (max-width: 640px) {
   .site-header { padding: 10px 14px 4px; z-index: 6; background: transparent; }
-  .logo img { height: 40px; }
+  .logo img { height: 58px; }
   .phone { font-size: 14px; }
   .wash { background: rgba(255, 255, 255, 0.06); }
   body.page .wash { background: rgba(255, 255, 255, 0.18); }

@@ -6,7 +6,7 @@
   gap: 2px;
   flex: 0 1 auto;
   min-width: 0;
-  max-width: min(280px, calc(100% - 11rem));
+  max-width: min(360px, calc(100% - 11rem));
 }
 .brand .logo { display: block; }
 .tagline {
