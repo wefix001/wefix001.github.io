@@ -9,23 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/landings.css">
 </head>
-<body class="home landing-hack" data-intent="garden.hack">
+<body class="home has-article landing-hack" data-intent="garden.hack">
   <div class="wash" aria-hidden="true"></div>
   <div class="test-banner">Testyta · inte den skarpa sajten</div>
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
-      <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
-           onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
+        <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
+             onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
+      </a>
+      <p class="tagline">Trädgård i Göteborg och Halland sedan 2003</p>
+    </div>
     <a class="phone" href="tel:0103300640">010-33 00 640</a>
   </header>
-  <h1 class="seo-h1">Häckklippning</h1>
   <main class="stage">
     <div class="orb orb-main" id="main-orb">
       <div class="orb-inner">
         <div class="messages" id="messages">
-          <p class="msg bot greeting">Hej! Häckklippning — vi mäter och klipper. Ungefär hur lång är häcken?</p>
+          <p class="msg bot greeting">Hej! Hur vill du ha hjälp med häcken — längd, höjd, när?</p>
           <p class="privacy-line" id="privacy-line">Du pratar med en AI. Vi tar emot det du skriver för att kunna hjälpa dig.</p>
         </div>
         <form class="composer" id="composer" autocomplete="off">
@@ -41,17 +44,45 @@
     </div>
     <div class="offers" id="offers"></div>
   </main>
+    <article class="landing-article">
+      <h1>Häckklippning</h1>
+        <img class="shot" src="assets/img/foto-c1a.jpg" alt="Häck och trädgård som WEFIX sköter" width="1200" height="600" loading="lazy">
+        <p>Vi klipper häckar i alla storlekar. Det finns många växtarter, och det är inte alltid självklart hur eller när just din häck ska klippas. Jobbet är tungt och kräver rätt verktyg — därför är häckklippning en av de tjänster våra kunder ber om oftast.</p>
+        <p>Vid besök mäter vi upp häcken och går igenom vilken höjd du vill ha. Du får råd om klippningen. En kollega återkommer med hur vi tar det vidare. Inget pris i chatten.</p>
+        <p>Vi har gjort det här länge och vet hur, när och på vilket sätt klippningen ska ske så att häcken mår bra efteråt.</p>
+      <p><a class="to-chat" href="#main-orb">Skriv i bollen</a> så tar en kollega det. Inga priser här.</p>
+      <h2>Vanliga frågor</h2>
+        <dl class="faq">
+          <dt>När ska häcken klippas?</dt>
+          <dd>Det beror på sort och läge. Vi säger när det är rätt för just din häck.</dd>
+          <dt>Mäter ni upp?</dt>
+          <dd>Ja. Vi mäter längd och går igenom höjd vid besök, sen hör en kollega av sig.</dd>
+          <dt>Tar ni bort avfallet?</dt>
+          <dd>Säg till i bollen om klippet ska forslas bort. Vi anpassar jobbet efter tomten.</dd>
+        </dl>
+      <h2>Område</h2>
+      <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
+      <p class="nap">WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i bollen eller ring 010-33 00 640.</p>
+    </article>
   <footer class="site-footer">
-    <a href="integritet.html">Integritet</a>
+    <nav class="foot-services" aria-label="Tjänster">
+    <a href="markarbete.html">Markarbete</a>
+    <a href="tradfallning.html">Trädfällning</a>
+    <a href="plantering.html">Plantering</a>
+    <a href="hackklippning.html">Häckklippning</a>
+    <a href="anlaggning.html">Anläggning</a>
+    <a href="grasklippning.html">Gräsklippning</a>
+    <a href="beskarning.html">Beskärning</a>
+    <a href="wefix-bygg.html">WeFix Bygg</a>
+    <a href="ograsrensning.html">Ogräsrensning</a>
+    <a href="snorodjning.html">Snöröjning</a>
+    <a href="lovkrattning.html">Lövkrattning</a>
+    <a href="robotgrasklippare.html">Robotgräsklippare</a>
+    <a href="ovriga-tjanster.html">Övriga tjänster</a>
+    </nav>
+    <p class="foot-meta"><a href="integritet.html">Integritet</a> · <a href="tel:0103300640">010-33 00 640</a> · Vallda · Sävedalen · Varberg</p>
     <span class="badge">Utkast · inte wefixtradgard.se</span>
   </footer>
-  <aside class="seo-block">
-    <h2>Häckklippning</h2>
-    <p>Vi mäter och klipper häck. Säg ungefärlig längd och vilken höjd du vill ha. En kollega återkommer. Inget pris i chatten.</p>
-    <h2>Område</h2>
-    <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
-    <p>WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i chatten så tar en kollega det. Inga priser här.</p>
-  </aside>
   <script src="assets/js/chat.js"></script>
 </body>
 </html>
