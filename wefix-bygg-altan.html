@@ -9,40 +9,80 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/landings.css">
 </head>
-<body class="page">
+<body class="home has-article landing-bygg" data-intent="bygg.altan">
   <div class="wash" aria-hidden="true"></div>
   <div class="test-banner">Testyta · inte den skarpa sajten</div>
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="WEFIX Trädgård">
-      <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
-           onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
+        <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
+             onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
+      </a>
+      <p class="tagline">Trädgård i Göteborg och Halland sedan 2003</p>
+    </div>
     <a class="phone" href="tel:0103300640">010-33 00 640</a>
   </header>
-  <main class="wrap">
-    <a class="back" href="index.html">← Tillbaka till chatten</a>
-    <article class="card">
-      <p class="note">Utkast · testyta. Inte den skarpa sajten wefixtradgard.se. Inga priser här.</p>
+  <main class="stage">
+    <div class="orb orb-main" id="main-orb">
+      <div class="orb-inner">
+        <div class="messages" id="messages">
+          <p class="msg bot greeting">Hej! Hur vill du ha hjälp av WEFIX Bygg — altan, staket, dränering eller renovering?</p>
+          <p class="privacy-line" id="privacy-line">Du pratar med en AI. Vi tar emot det du skriver för att kunna hjälpa dig.</p>
+        </div>
+        <form class="composer" id="composer" autocomplete="off">
+          <input id="chat-input" type="text" name="q" placeholder="Skriv här" maxlength="500" aria-label="Skriv här">
+          <button class="send" type="submit" aria-label="Skicka">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22 2L11 13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="offers" id="offers"></div>
+  </main>
+    <article class="landing-article">
       <h1>Bygga altan</h1>
-      <p>Ny altan går till WEFIX Bygg. Chatten skapar en egen ticket. Altantvätt stannar hos trädgård.</p>
-      <p>Skriv adress och ungefär vad du vill ha. En kollega hör av sig. Inget pris i chatten.</p>
+        <img class="shot" src="https://www.wefixtradgard.se/wp-content/uploads/2021/05/WeFix-Bygg-bg-img.jpg" alt="Ny altan, staket och renovering hos WeFix Bygg" width="1200" height="600" loading="lazy">
+        <p>Ny altan går till WeFix Bygg, inte till trädgård. Samma sak med staket och renovering. Chatten skapar en egen ticket, så du slipper gissa luckan.</p>
+        <p>Skriv ungefär vad du vill ha — ny altan, staket eller en renovering — och var det gäller. En kollega hör av sig. Inget pris i chatten.</p>
+        <p>Bara tvätten stannar hos trädgård. Ny altan är Bygg. Osäkert? Skriv ändå.</p>
+      <p><a class="to-chat" href="#main-orb">Skriv i bollen</a> så tar vi det. Inga priser här.</p>
+      <h2>Vanliga frågor</h2>
+        <dl class="faq">
+          <dt>Bara tvätta altanen?</dt>
+          <dd>Då är det trädgård, inte Bygg. Skriv altantvätt i chatten eller gå till altantvätt-sidan.</dd>
+          <dt>Ny altan eller staket?</dt>
+          <dd>Klicka på en boll eller skriv. Det blir en egen ticket till Bygg.</dd>
+          <dt>Är det samma bolag?</dt>
+          <dd>Du skriver till WEFIX. Bygg får eget ärende. Altantvätt är trädgård.</dd>
+        </dl>
       <h2>Område</h2>
       <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
-      <h2>Vanliga frågor</h2>
-      <dl class="faq">
-        <dt>Bara tvätta altanen?</dt>
-        <dd>Då är det trädgård, inte Bygg. Skriv altantvätt i chatten.</dd>
-        <dt>Hur bokar jag?</dt>
-        <dd>Chatten eller 010-33 00 640.</dd>
-      </dl>
-      <p class="nap">WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg<br>
-      Skriv i <a href="index.html">chatten</a> så tar en kollega det.</p>
+      <p class="nap">WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i bollen eller ring 010-33 00 640.</p>
     </article>
-  </main>
-  <footer class="page-footer">
-    <a href="integritet.html">Integritet</a>
-    · <span class="badge">Utkast · inte wefixtradgard.se</span>
+  <footer class="site-footer">
+    <nav class="foot-services" aria-label="Tjänster">
+    <a href="markarbete.html">Markarbete</a>
+    <a href="tradfallning.html">Trädfällning</a>
+    <a href="plantering.html">Plantering</a>
+    <a href="hackklippning.html">Häckklippning</a>
+    <a href="anlaggning.html">Anläggning</a>
+    <a href="grasklippning.html">Gräsklippning</a>
+    <a href="beskarning.html">Beskärning</a>
+    <a href="wefix-bygg.html">WeFix Bygg</a>
+    <a href="ograsrensning.html">Ogräsrensning</a>
+    <a href="snorodjning.html">Snöröjning</a>
+    <a href="lovkrattning.html">Lövkrattning</a>
+    <a href="robotgrasklippare.html">Robotgräsklippare</a>
+    <a href="ovriga-tjanster.html">Övriga tjänster</a>
+    </nav>
+    <p class="foot-meta"><a href="integritet.html">Integritet</a> · <a href="tel:0103300640">010-33 00 640</a> · Vallda · Sävedalen · Varberg</p>
+    <span class="badge">Utkast · inte wefixtradgard.se</span>
   </footer>
+  <script src="assets/js/chat.js"></script>
 </body>
 </html>
