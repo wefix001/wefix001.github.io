@@ -4,7 +4,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  max-width: min(360px, 64vw);
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: min(280px, calc(100% - 11rem));
 }
 .brand .logo { display: block; }
 .tagline {
