@@ -73,26 +73,25 @@
   };
 
   var START_GREETING = "Hur kan vi hjälpa dig i trädgården?";
-  var ASK = "vad vill du ha hjälp med?";
   var LANDINGS = {
-    "robot.service": { greeting: "Robotgräsklippare - " + ASK, ask: "Robotgräsklippare - " + ASK, what: "Robotgräsklippare" },
-    "robot.buy": { greeting: "Robotgräsklippare - " + ASK, ask: "Robotgräsklippare - " + ASK, what: "Köpa robot" },
-    "garden.hack": { greeting: "Häckklippning - " + ASK, ask: "Häckklippning - " + ASK, what: "Häckklippning" },
-    "garden.gras": { greeting: "Gräsklippning - " + ASK, ask: "Gräsklippning - " + ASK, what: "Gräsklippning" },
-    "garden.sno": { greeting: "Snöröjning - " + ASK, ask: "Snöröjning - " + ASK, what: "Snöröjning" },
-    "garden.altan": { greeting: "Altantvätt - " + ASK, ask: "Altantvätt - " + ASK, what: "Altantvätt" },
-    "garden.beskar": { greeting: "Beskärning - " + ASK, ask: "Beskärning - " + ASK, what: "Beskärning" },
-    "garden.anlaggning": { greeting: "Anläggning - " + ASK, ask: "Anläggning - " + ASK, what: "Anläggning" },
-    "garden.mark": { greeting: "Markarbete - " + ASK, ask: "Markarbete - " + ASK, what: "Markarbete" },
-    "garden.trad": { greeting: "Trädfällning - " + ASK, ask: "Trädfällning - " + ASK, what: "Trädfällning" },
-    "garden.plantera": { greeting: "Plantering - " + ASK, ask: "Plantering - " + ASK, what: "Plantering" },
-    "garden.ogras": { greeting: "Ogräsrensning - " + ASK, ask: "Ogräsrensning - " + ASK, what: "Ogräsrensning" },
-    "ovriga": { greeting: "Övriga tjänster - " + ASK, ask: "Övriga tjänster - " + ASK, what: "Övriga tjänster" },
-    "host.stad": { greeting: "Lövkrattning - " + ASK, ask: "Lövkrattning - " + ASK, what: "Höststädning" },
-    "brf": { greeting: "BRF - " + ASK, ask: "BRF - " + ASK, what: "BRF-skötsel" },
-    "bygg.altan": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "WEFIX Bygg" },
-    "bygg.staket": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "Staket" },
-    "bygg.renovering": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "Renovering" },
+    "robot.service": { greeting: "Robotgräsklippare - vad vill du ha hjälp med?", ask: "Robotgräsklippare - vad vill du ha hjälp med?", what: "Robotgräsklippare" },
+    "robot.buy": { greeting: "Robotgräsklippare - vad vill du ha hjälp med?", ask: "Robotgräsklippare - vad vill du ha hjälp med?", what: "Köpa robot" },
+    "garden.hack": { greeting: "Häckklippning - vad vill du ha hjälp med?", ask: "Häckklippning - vad vill du ha hjälp med?", what: "Häckklippning" },
+    "garden.gras": { greeting: "Gräsklippning - vad vill du ha hjälp med?", ask: "Gräsklippning - vad vill du ha hjälp med?", what: "Gräsklippning" },
+    "garden.sno": { greeting: "Snöröjning - vad vill du ha hjälp med?", ask: "Snöröjning - vad vill du ha hjälp med?", what: "Snöröjning" },
+    "garden.altan": { greeting: "Altantvätt - vad vill du ha hjälp med?", ask: "Altantvätt - vad vill du ha hjälp med?", what: "Altantvätt" },
+    "garden.beskar": { greeting: "Beskärning - vad vill du ha hjälp med?", ask: "Beskärning - vad vill du ha hjälp med?", what: "Beskärning" },
+    "garden.anlaggning": { greeting: "Anläggning - vad vill du ha hjälp med?", ask: "Anläggning - vad vill du ha hjälp med?", what: "Anläggning" },
+    "garden.mark": { greeting: "Markarbete - vad vill du ha hjälp med?", ask: "Markarbete - vad vill du ha hjälp med?", what: "Markarbete" },
+    "garden.trad": { greeting: "Trädfällning - vad vill du ha hjälp med?", ask: "Trädfällning - vad vill du ha hjälp med?", what: "Trädfällning" },
+    "garden.plantera": { greeting: "Plantering - vad vill du ha hjälp med?", ask: "Plantering - vad vill du ha hjälp med?", what: "Plantering" },
+    "garden.ogras": { greeting: "Ogräsrensning - vad vill du ha hjälp med?", ask: "Ogräsrensning - vad vill du ha hjälp med?", what: "Ogräsrensning" },
+    "ovriga": { greeting: "Övriga tjänster - vad vill du ha hjälp med?", ask: "Övriga tjänster - vad vill du ha hjälp med?", what: "Övriga tjänster" },
+    "host.stad": { greeting: "Lövkrattning - vad vill du ha hjälp med?", ask: "Lövkrattning - vad vill du ha hjälp med?", what: "Höststädning" },
+    "brf": { greeting: "BRF - vad vill du ha hjälp med?", ask: "BRF - vad vill du ha hjälp med?", what: "BRF-skötsel" },
+    "bygg.altan": { greeting: "WEFIX Bygg - vad vill du ha hjälp med?", ask: "WEFIX Bygg - vad vill du ha hjälp med?", what: "WEFIX Bygg" },
+    "bygg.staket": { greeting: "WEFIX Bygg - vad vill du ha hjälp med?", ask: "WEFIX Bygg - vad vill du ha hjälp med?", what: "Staket" },
+    "bygg.renovering": { greeting: "WEFIX Bygg - vad vill du ha hjälp med?", ask: "WEFIX Bygg - vad vill du ha hjälp med?", what: "Renovering" },
     "kontakt": { greeting: "Vad kan vi hjälpa dig med?", ask: "Vad kan vi hjälpa dig med?", what: "" }
   };
 
