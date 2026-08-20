@@ -72,25 +72,27 @@
     "kontakt": "kontakt"
   };
 
+  var START_GREETING = "Hur kan vi hjälpa dig i trädgården?";
+  var ASK = "vad vill du ha hjälp med?";
   var LANDINGS = {
-    "robot.service": { greeting: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Robotgräsklippare" },
-    "robot.buy": { greeting: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Köpa robot" },
-    "garden.hack": { greeting: "Hur vill du ha hjälp med häcken — längd, höjd eller när?", ask: "Hur vill du ha hjälp med häcken — längd, höjd eller när?", what: "Häckklippning" },
-    "garden.gras": { greeting: "Ska vi klippa gräset — en gång eller löpande?", ask: "Ska vi klippa gräset — en gång eller löpande?", what: "Gräsklippning" },
-    "garden.sno": { greeting: "Ska vi ta snön — villa, BRF eller hur ofta?", ask: "Ska vi ta snön — villa, BRF eller hur ofta?", what: "Snöröjning" },
-    "garden.altan": { greeting: "Ska vi tvätta altanen? Ungefär hur stor är ytan?", ask: "Ska vi tvätta altanen? Ungefär hur stor är ytan?", what: "Altantvätt" },
-    "garden.beskar": { greeting: "Ska vi beskära — buskar, träd eller när?", ask: "Ska vi beskära — buskar, träd eller när?", what: "Beskärning" },
-    "garden.anlaggning": { greeting: "Ny gräsmatta — rulle, sådd eller platsbesök?", ask: "Ny gräsmatta — rulle, sådd eller platsbesök?", what: "Anläggning" },
-    "garden.mark": { greeting: "Markarbete — sten, mur eller schakt?", ask: "Markarbete — sten, mur eller schakt?", what: "Markarbete" },
-    "garden.trad": { greeting: "Ska vi fälla trädet? Ska virket forslas bort?", ask: "Ska vi fälla trädet? Ska virket forslas bort?", what: "Trädfällning" },
-    "garden.plantera": { greeting: "Plantering — blommor, buskar eller träd?", ask: "Plantering — blommor, buskar eller träd?", what: "Plantering" },
-    "garden.ogras": { greeting: "Ogräs — i rabatt eller mellan sten?", ask: "Ogräs — i rabatt eller mellan sten?", what: "Ogräsrensning" },
-    "ovriga": { greeting: "Vad ska vi ta? Skriv kort vad det gäller.", ask: "Vad ska vi ta? Skriv kort vad det gäller.", what: "Övriga tjänster" },
-    "host.stad": { greeting: "Höststädning — löv, rabatter eller infart?", ask: "Höststädning — löv, rabatter eller infart?", what: "Höststädning" },
-    "brf": { greeting: "Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", ask: "Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", what: "BRF-skötsel" },
-    "bygg.altan": { greeting: "WEFIX Bygg — altan, staket, dränering eller renovering?", ask: "WEFIX Bygg — altan, staket, dränering eller renovering?", what: "WEFIX Bygg" },
-    "bygg.staket": { greeting: "Hur långt ska staketet vara, och när?", ask: "Hur långt ska staketet vara, och när?", what: "Staket" },
-    "bygg.renovering": { greeting: "Vad ska vi titta på — och när?", ask: "Vad ska vi titta på — och när?", what: "Renovering" },
+    "robot.service": { greeting: "Robotgräsklippare - " + ASK, ask: "Robotgräsklippare - " + ASK, what: "Robotgräsklippare" },
+    "robot.buy": { greeting: "Robotgräsklippare - " + ASK, ask: "Robotgräsklippare - " + ASK, what: "Köpa robot" },
+    "garden.hack": { greeting: "Häckklippning - " + ASK, ask: "Häckklippning - " + ASK, what: "Häckklippning" },
+    "garden.gras": { greeting: "Gräsklippning - " + ASK, ask: "Gräsklippning - " + ASK, what: "Gräsklippning" },
+    "garden.sno": { greeting: "Snöröjning - " + ASK, ask: "Snöröjning - " + ASK, what: "Snöröjning" },
+    "garden.altan": { greeting: "Altantvätt - " + ASK, ask: "Altantvätt - " + ASK, what: "Altantvätt" },
+    "garden.beskar": { greeting: "Beskärning - " + ASK, ask: "Beskärning - " + ASK, what: "Beskärning" },
+    "garden.anlaggning": { greeting: "Anläggning - " + ASK, ask: "Anläggning - " + ASK, what: "Anläggning" },
+    "garden.mark": { greeting: "Markarbete - " + ASK, ask: "Markarbete - " + ASK, what: "Markarbete" },
+    "garden.trad": { greeting: "Trädfällning - " + ASK, ask: "Trädfällning - " + ASK, what: "Trädfällning" },
+    "garden.plantera": { greeting: "Plantering - " + ASK, ask: "Plantering - " + ASK, what: "Plantering" },
+    "garden.ogras": { greeting: "Ogräsrensning - " + ASK, ask: "Ogräsrensning - " + ASK, what: "Ogräsrensning" },
+    "ovriga": { greeting: "Övriga tjänster - " + ASK, ask: "Övriga tjänster - " + ASK, what: "Övriga tjänster" },
+    "host.stad": { greeting: "Lövkrattning - " + ASK, ask: "Lövkrattning - " + ASK, what: "Höststädning" },
+    "brf": { greeting: "BRF - " + ASK, ask: "BRF - " + ASK, what: "BRF-skötsel" },
+    "bygg.altan": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "WEFIX Bygg" },
+    "bygg.staket": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "Staket" },
+    "bygg.renovering": { greeting: "WEFIX Bygg - " + ASK, ask: "WEFIX Bygg - " + ASK, what: "Renovering" },
     "kontakt": { greeting: "Vad kan vi hjälpa dig med?", ask: "Vad kan vi hjälpa dig med?", what: "" }
   };
 
@@ -295,7 +297,10 @@
   function bootLanding() {
     captureUtm();
     var intent = intentFromUrl();
-    if (!intent) return;
+    if (!intent) {
+      setGreeting(START_GREETING);
+      return;
+    }
     var land = LANDINGS[intent] || LANDINGS.kontakt;
     draft.intent = intent;
     if (land.what) draft.what = land.what;
