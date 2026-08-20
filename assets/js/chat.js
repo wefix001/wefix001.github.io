@@ -106,6 +106,8 @@
   var privacyEl = document.getElementById("privacy-line");
   if (!form || !input || !messagesEl || !offersEl) return;
 
+  var Q_NAME = "Vad heter du?";
+  var Q_ADDRESS = "Vilken adress gäller det?";
   var Q_PHONE = "Vilket telefonnummer når vi dig på?";
   var Q_EMAIL = "Vilken e-post ska vi använda?";
   var PRICE_LINE = "Vi sätter inget pris i chatten. En kollega hör av sig.";
@@ -180,9 +182,22 @@
     if (draft.detail) draft.detail = draft.detail + ". " + text; else draft.detail = text;
   }
   function hasBothContacts() { return !!(String(draft.phone || "").trim() && String(draft.email || "").trim()); }
+  function currentQuestion() {
+    if (collectStep === "name") return Q_NAME;
+    if (collectStep === "address") return Q_ADDRESS;
+    if (collectStep === "email") return Q_EMAIL;
+    return Q_PHONE;
+  }
+  function askName() { collectStep = "name"; mode = "collect"; addMsg("bot", Q_NAME); }
+  function askAddress() { collectStep = "address"; mode = "collect"; addMsg("bot", Q_ADDRESS); }
   function askPhone() { collectStep = "phone"; mode = "collect"; addMsg("bot", Q_PHONE); }
   function askEmail() { collectStep = "email"; mode = "collect"; addMsg("bot", Q_EMAIL); }
   function finishTicket() {
+    if (!hasBothContacts()) {
+      if (!draft.phone) { askPhone(); return; }
+      askEmail();
+      return;
+    }
     mode = "done";
     collectStep = null;
     window.__wefixDraft = draft;
@@ -192,6 +207,11 @@
     if (!hasBothContacts()) return false;
     finishTicket();
     return true;
+  }
+  function nextRequired() {
+    if (hasBothContacts()) { finishTicket(); return; }
+    if (!draft.phone) { askPhone(); return; }
+    askEmail();
   }
   function maybeShowRobotOrbs(text) {
     if (landingBooted && isRobotCode(draft.intent)) {
@@ -206,9 +226,8 @@
     committed = true;
     mode = "collect";
     maybeShowRobotOrbs(text);
-    if (hasBothContacts()) { finishTicket(); return; }
-    if (!draft.phone) { askPhone(); return; }
-    askEmail();
+    if (collectStep) { addMsg("bot", currentQuestion()); return; }
+    askName();
   }
   function pickOffer(o) {
     startChat();
@@ -218,7 +237,7 @@
     addMsg("user", o.title);
     if (mode === "done") { input.focus(); return; }
     if (mode === "collect" && collectStep) {
-      addMsg("bot", collectStep === "email" ? Q_EMAIL : Q_PHONE);
+      addMsg("bot", currentQuestion());
       input.focus();
       return;
     }
@@ -259,8 +278,22 @@
   }
   function looksLikePhone(s) { var d = String(s || "").replace(/\D/g, ""); return d.length >= 8 && d.length <= 12; }
   function looksLikeEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s).trim()); }
-  function isMissing(s) { return /^(hoppa|hoppa över|skip|-|–|vet inte|ingen|n\/a|valfritt|)$/i.test(String(s).trim()); }
+  function isSkip(s) { return /^(hoppa|hoppa över|skip|-|–|vet inte|ingen|n\/a|valfritt|)$/i.test(String(s).trim()); }
   function collectFrom(text) {
+    if (collectStep === "name") {
+      if (looksLikePhone(text) && !draft.phone) draft.phone = text.trim();
+      else if (looksLikeEmail(text) && !draft.email) draft.email = text.trim();
+      else if (!isSkip(text)) draft.name = text.trim();
+      askAddress();
+      return;
+    }
+    if (collectStep === "address") {
+      if (looksLikePhone(text) && !draft.phone) draft.phone = text.trim();
+      else if (looksLikeEmail(text) && !draft.email) draft.email = text.trim();
+      else if (!isSkip(text)) draft.address = text.trim();
+      nextRequired();
+      return;
+    }
     if (collectStep === "phone") {
       if (looksLikeEmail(text) && !draft.email) {
         draft.email = text.trim();
@@ -268,7 +301,7 @@
         addMsg("bot", Q_PHONE);
         return;
       }
-      if (isMissing(text) || !looksLikePhone(text)) { addMsg("bot", Q_PHONE); return; }
+      if (isSkip(text) || !looksLikePhone(text)) { addMsg("bot", Q_PHONE); return; }
       draft.phone = text.trim();
       if (maybeFinish()) return;
       askEmail();
@@ -281,7 +314,7 @@
         addMsg("bot", Q_EMAIL);
         return;
       }
-      if (isMissing(text) || !looksLikeEmail(text)) { addMsg("bot", Q_EMAIL); return; }
+      if (isSkip(text) || !looksLikeEmail(text)) { addMsg("bot", Q_EMAIL); return; }
       draft.email = text.trim();
       if (maybeFinish()) return;
       askPhone();
@@ -339,8 +372,7 @@
     if (PRICE_RE.test(t)) {
       addMsg("bot", PRICE_LINE);
       if (mode === "done") return;
-      if (mode === "collect" && collectStep === "email") { addMsg("bot", Q_EMAIL); return; }
-      if (mode === "collect" && collectStep === "phone") { addMsg("bot", Q_PHONE); return; }
+      if (mode === "collect" && collectStep) { addMsg("bot", currentQuestion()); return; }
       if (committed) { beginCollect(text); return; }
       if (landingBooted) { committed = true; beginCollect(text); return; }
       return;
