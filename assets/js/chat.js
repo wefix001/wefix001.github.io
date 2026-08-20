@@ -111,7 +111,7 @@
   var Q_PHONE = "Vilket telefonnummer når vi dig på?";
   var Q_EMAIL = "Vilken e-post ska vi använda?";
   var PRICE_LINE = "Vi sätter inget pris i chatten. En kollega hör av sig.";
-  var TICKET_THANKS = "Tack. Vi har tagit emot ärendet (ticket-utkast).";
+  var THANKS = "Tack. Vi har tagit emot det du skrev.";
 
   var started = false;
   var committed = false;
@@ -192,7 +192,7 @@
   function askAddress() { collectStep = "address"; mode = "collect"; addMsg("bot", Q_ADDRESS); }
   function askPhone() { collectStep = "phone"; mode = "collect"; addMsg("bot", Q_PHONE); }
   function askEmail() { collectStep = "email"; mode = "collect"; addMsg("bot", Q_EMAIL); }
-  function finishTicket() {
+  function finishThanks() {
     if (!hasBothContacts()) {
       if (!draft.phone) { askPhone(); return; }
       askEmail();
@@ -201,15 +201,15 @@
     mode = "done";
     collectStep = null;
     window.__wefixDraft = draft;
-    addMsg("bot", TICKET_THANKS);
+    addMsg("bot", THANKS);
   }
   function maybeFinish() {
     if (!hasBothContacts()) return false;
-    finishTicket();
+    finishThanks();
     return true;
   }
   function nextRequired() {
-    if (hasBothContacts()) { finishTicket(); return; }
+    if (hasBothContacts()) { finishThanks(); return; }
     if (!draft.phone) { askPhone(); return; }
     askEmail();
   }
@@ -379,7 +379,7 @@
     }
     if (mode === "collect" && collectStep) { collectFrom(text); return; }
     if (mode === "done") {
-      addMsg("bot", "Vi har tagit emot ärendet (ticket-utkast). Ring 010-33 00 640 om du vill ändra något.");
+      addMsg("bot", "Vi har tagit emot det du skrev. Ring 010-33 00 640 om du vill ändra något.");
       return;
     }
     appendWhat(text);
