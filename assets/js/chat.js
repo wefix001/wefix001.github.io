@@ -152,13 +152,16 @@
     shown.forEach(function (o) {
       if (!o) return;
       visibleCodes.push(o.code);
+      var wrap = document.createElement("div");
+      wrap.className = "orb-wrap";
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "orb orb-offer";
       btn.setAttribute("data-code", o.code);
       btn.innerHTML = '<p class="t">' + esc(o.title) + "</p><p class=\"l1\">" + esc(o.line1) + "</p><p class=\"l2\">" + esc(o.line2) + "</p>";
       btn.addEventListener("click", function () { pickOffer(o); });
-      offersEl.appendChild(btn);
+      wrap.appendChild(btn);
+      offersEl.appendChild(wrap);
     });
   }
   function firstAsk(code) {
