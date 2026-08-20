@@ -133,16 +133,16 @@ body.home:not(.has-article) .stage {
 .orb-wrap::after {
   content: "";
   position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: -18%;
-  height: 30%;
+  left: 4%;
+  right: 4%;
+  bottom: -20%;
+  height: 34%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 50% 40%,
-    rgba(12, 16, 8, 0.62) 0%,
-    rgba(12, 16, 8, 0.32) 36%,
-    rgba(12, 16, 8, 0.10) 60%,
-    rgba(12, 16, 8, 0) 78%);
+  background: radial-gradient(ellipse at 50% 38%,
+    rgba(8, 12, 6, 0.70) 0%,
+    rgba(8, 12, 6, 0.38) 34%,
+    rgba(8, 12, 6, 0.14) 58%,
+    rgba(8, 12, 6, 0) 78%);
   pointer-events: none;
   z-index: 0;
 }
@@ -162,77 +162,72 @@ body.home:not(.has-article) .stage {
   border-radius: 50%;
 }
 
-/* 3D glass BALL.
-   Frost = a blurred copy of the same garden, aligned with background-attachment.
-   Never use backdrop-filter here — Chrome milks the whole disc with it. */
+/* 3D glass BALL — clear-ish frost, garden showing through.
+   Blur stays on the sphere (6–8px). Specular sits on ::before ABOVE that blur.
+   No white fill, no duplicated garden layer — those read as a milky pancake. */
 .orb {
   position: relative;
   z-index: 1;
-  isolation: isolate;
   width: var(--orb-size, min(158px, 29vw));
   height: var(--orb-size, min(158px, 29vw));
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   flex-shrink: 0;
   background: transparent;
-  border: 2.5px solid rgba(255,255,255,0.94);
+  backdrop-filter: blur(7px) saturate(128%);
+  -webkit-backdrop-filter: blur(7px) saturate(128%);
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  box-shadow:
+    inset 0 0 0 1.2px rgba(18, 24, 12, 0.28),
+    inset 0 -52px 40px rgba(8, 12, 6, 0.20),
+    inset 16px 20px 26px rgba(255, 255, 255, 0.10);
   overflow: hidden;
 }
 .orb-wrap > .orb {
   width: 100%;
   height: 100%;
 }
-/* Specular cap + spherical volume sit ABOVE the frost */
+/* LARGE 10–11 o'clock specular cap — above the blur */
 .orb::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
   background:
-    radial-gradient(ellipse 34% 26% at 22% 15%,
-      #fff 0%,
-      #fff 22%,
-      rgba(255,255,255,0.88) 40%,
-      rgba(255,255,255,0.28) 60%,
-      rgba(255,255,255,0) 74%),
-    radial-gradient(ellipse 11% 8% at 47% 21%,
+    radial-gradient(ellipse 30% 24% at 20% 14%,
+      #ffffff 0%,
+      #ffffff 26%,
+      rgba(255,255,255,0.82) 46%,
+      rgba(255,255,255,0.22) 64%,
+      rgba(255,255,255,0) 76%),
+    radial-gradient(ellipse 54% 44% at 19% 13%,
+      rgba(255,255,255,0.50) 0%,
+      rgba(255,255,255,0.16) 42%,
+      rgba(255,255,255,0) 68%),
+    radial-gradient(ellipse 13% 10% at 46% 22%,
       rgba(255,255,255,0.95) 0%,
-      rgba(255,255,255,0.4) 46%,
-      rgba(255,255,255,0) 72%),
-    radial-gradient(ellipse 44% 6% at 24% 16%,
-      rgba(255,255,255,0.45) 0%,
-      rgba(255,255,255,0) 70%),
-    radial-gradient(circle at 72% 80%,
-      rgba(10, 14, 8, 0.26) 0%,
-      transparent 48%),
-    radial-gradient(circle at 50% 50%,
-      transparent 0%,
-      transparent 58%,
-      rgba(10, 14, 8, 0.10) 80%,
-      rgba(10, 14, 8, 0.28) 100%);
-  box-shadow:
-    inset 0 0 0 1.4px rgba(255,255,255,0.40),
-    inset 0 -56px 46px rgba(10, 14, 8, 0.22);
+      rgba(255,255,255,0.30) 50%,
+      rgba(255,255,255,0) 74%);
   pointer-events: none;
   z-index: 2;
 }
-/* Light frost: same garden as the page, blurred, clipped to the ball */
+/* Darker refractive rim + bottom volume. No fill in the center. */
 .orb::after {
   content: "";
   position: absolute;
-  inset: -36px;
-  background-color: transparent;
-  background-image: var(--garden);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  filter: blur(6px) saturate(118%) brightness(1.02);
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 74% 82%,
+      rgba(8, 12, 6, 0.22) 0%,
+      transparent 46%),
+    radial-gradient(circle at 50% 50%,
+      transparent 0%,
+      transparent 60%,
+      rgba(8, 12, 6, 0.10) 82%,
+      rgba(8, 12, 6, 0.30) 100%);
   pointer-events: none;
-  z-index: 0;
-}
-@media (min-width: 768px) {
-  .orb::after { background-attachment: fixed; }
+  z-index: 1;
 }
 
 .orb-main {
