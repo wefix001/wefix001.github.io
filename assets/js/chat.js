@@ -96,10 +96,8 @@
   };
 
   var PRICE_RE = /pris|kostar|kostnad|hur mycket|vad kostar|kronor|offertpris|dyrt|billigt/;
-  var HUMAN_RE = /\b(ring|ringa|uppring|återuppring|människa|mattias|samtal|telefonera)\b|riktig person|prata med n[åa]gon|en m[äa]nniska/;
   var JOBAPP_RE = /s[öo]ker jobb|jobba hos|anställning|sommarjobb|vill jobba/;
   var JAIL_RE = /systemprompt|ignore (all|previous)|visa alla kunder|kundregister|fieldly|sellfinity|api[- ]?nyckel|jailbreak/;
-  var FAR_RE = /stockholm|malm[öo]|uppsala|ume[åa]|sk[åa]ne|sundsvall|lule[åa]|helsingborg/;
 
   var form = document.getElementById("composer");
   var input = document.getElementById("chat-input");
@@ -108,7 +106,15 @@
   var privacyEl = document.getElementById("privacy-line");
   if (!form || !input || !messagesEl || !offersEl) return;
 
+  var Q_NAME = "Vad heter du?";
+  var Q_ADDRESS = "Vilken adress gäller det?";
+  var Q_PHONE = "Vilket telefonnummer når vi dig på?";
+  var Q_EMAIL = "Vilken e-post ska vi använda?";
+  var PRICE_LINE = "Vi sätter inget pris i chatten. En kollega hör av sig.";
+  var THANKS = "Tack. Vi har tagit emot det du skrev.";
+
   var started = false;
+  var committed = false;
   var mode = "idle";
   var collectStep = null;
   var draft = { name: "", phone: "", email: "", address: "", what: "", when: "", intent: "", detail: "", utm: { source: "", campaign: "", content: "" }, gclid: "" };
@@ -165,30 +171,77 @@
       offersEl.appendChild(wrap);
     });
   }
-  function firstAsk(code) {
-    var land = LANDINGS[code];
-    if (land && land.ask) return land.ask;
-    var o = offerByCode(code);
-    if (o) return "Berätta kort vad du vill ha hjälp med kring " + o.title.toLowerCase() + ".";
-    return "Berätta kort vad du vill ha hjälp med.";
-  }
   function isRobotCode(code) { return String(code || "").indexOf("robot.") === 0; }
+  function mentionsRobot(raw) {
+    var t = String(raw || "").toLowerCase();
+    return t.indexOf("robot") !== -1 || t.indexOf("automower") !== -1;
+  }
   function appendWhat(text) {
     if (!text) return;
     if (draft.what) draft.what = draft.what + ". " + text; else draft.what = text;
     if (draft.detail) draft.detail = draft.detail + ". " + text; else draft.detail = text;
   }
-  function askName() { collectStep = "name"; addMsg("bot", "Vad heter du?"); }
+  function hasBothContacts() { return !!(String(draft.phone || "").trim() && String(draft.email || "").trim()); }
+  function currentQuestion() {
+    if (collectStep === "name") return Q_NAME;
+    if (collectStep === "address") return Q_ADDRESS;
+    if (collectStep === "email") return Q_EMAIL;
+    return Q_PHONE;
+  }
+  function askName() { collectStep = "name"; mode = "collect"; addMsg("bot", Q_NAME); }
+  function askAddress() { collectStep = "address"; mode = "collect"; addMsg("bot", Q_ADDRESS); }
+  function askPhone() { collectStep = "phone"; mode = "collect"; addMsg("bot", Q_PHONE); }
+  function askEmail() { collectStep = "email"; mode = "collect"; addMsg("bot", Q_EMAIL); }
+  function finishThanks() {
+    if (!hasBothContacts()) {
+      if (!draft.phone) { askPhone(); return; }
+      askEmail();
+      return;
+    }
+    mode = "done";
+    collectStep = null;
+    window.__wefixDraft = draft;
+    addMsg("bot", THANKS);
+  }
+  function maybeFinish() {
+    if (!hasBothContacts()) return false;
+    finishThanks();
+    return true;
+  }
+  function nextRequired() {
+    if (hasBothContacts()) { finishThanks(); return; }
+    if (!draft.phone) { askPhone(); return; }
+    askEmail();
+  }
+  function maybeShowRobotOrbs(text) {
+    if (landingBooted && isRobotCode(draft.intent)) {
+      showOffers(robotOfferList(), 3);
+      return;
+    }
+    if (!landingBooted && mentionsRobot(text)) {
+      showOffers(robotOfferList(), 3);
+    }
+  }
+  function beginCollect(text) {
+    committed = true;
+    mode = "collect";
+    maybeShowRobotOrbs(text);
+    if (collectStep) { addMsg("bot", currentQuestion()); return; }
+    askName();
+  }
   function pickOffer(o) {
     startChat();
     draft.intent = o.code;
-    draft.what = o.title;
+    if (!draft.what) draft.what = o.title;
+    else appendWhat(o.title);
     addMsg("user", o.title);
-    mode = "collect";
-    if (isRobotCode(o.code)) { collectStep = "model"; addMsg("bot", "Vilken robot eller modell har du?"); input.focus(); return; }
-    if (collectStep === "detail" && landingBooted) { input.focus(); return; }
-    collectStep = "detail";
-    addMsg("bot", firstAsk(o.code));
+    if (mode === "done") { input.focus(); return; }
+    if (mode === "collect" && collectStep) {
+      addMsg("bot", currentQuestion());
+      input.focus();
+      return;
+    }
+    beginCollect(o.title);
     input.focus();
   }
   function findOffers(raw) {
@@ -223,34 +276,49 @@
     }
     return out.slice(0, 3);
   }
-  function looksLikePhone(s) { var d = s.replace(/\D/g, ""); return d.length >= 8 && d.length <= 12; }
+  function looksLikePhone(s) { var d = String(s || "").replace(/\D/g, ""); return d.length >= 8 && d.length <= 12; }
   function looksLikeEmail(s) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s).trim()); }
-  function isSkip(s) { return /^(nej|hoppa|hoppa över|skip|-|–|vet inte|ingen|n\/a|valfritt)$/i.test(String(s).trim()); }
-  function finishDraft() { mode = "done"; collectStep = null; window.__wefixDraft = draft; addMsg("bot", "Utkast sparat. En kollega tar det."); }
+  function isSkip(s) { return /^(hoppa|hoppa över|skip|-|–|vet inte|ingen|n\/a|valfritt|)$/i.test(String(s).trim()); }
   function collectFrom(text) {
-    if (collectStep === "robot_choice") {
-      var typed = findOffers(text);
-      if (typed.length) { showOffers(isRobotCode(typed[0].code) ? robotOfferList() : typed, 4); addMsg("bot", "Klicka på en boll."); return; }
-      appendWhat(text); collectStep = "model"; addMsg("bot", "Vilken robot eller modell har du?"); return;
-    }
-    if (collectStep === "model") { appendWhat(text); askName(); return; }
-    if (collectStep === "detail") { appendWhat(text); askName(); return; }
     if (collectStep === "name") {
-      if (looksLikePhone(text) && !draft.phone) { draft.phone = text; addMsg("bot", "Tack. Vad heter du?"); return; }
-      draft.name = text; collectStep = "phone"; addMsg("bot", "Vilket telefonnummer når vi dig på?"); return;
-    }
-    if (collectStep === "phone") { draft.phone = text; collectStep = "email"; addMsg("bot", "Vilken e-postadress ska vi använda?"); return; }
-    if (collectStep === "email") {
-      if (!looksLikeEmail(text) && !isSkip(text)) { addMsg("bot", "Det ser inte ut som en e-postadress. Kan du skriva den igen?"); return; }
-      if (!isSkip(text)) draft.email = text.trim();
-      collectStep = "address"; addMsg("bot", "Vilken adress gäller det? (valfritt)"); return;
+      if (looksLikePhone(text) && !draft.phone) draft.phone = text.trim();
+      else if (looksLikeEmail(text) && !draft.email) draft.email = text.trim();
+      else if (!isSkip(text)) draft.name = text.trim();
+      askAddress();
+      return;
     }
     if (collectStep === "address") {
-      if (!isSkip(text)) draft.address = text;
-      if (/\b(vecka|måndag|tisdag|onsdag|torsdag|fredag|lördag|söndag|snart|asap|vår|höst|vinter|sommar|\d{1,2}\/\d{1,2})\b/i.test(text)) draft.when = text;
-      finishDraft(); return;
+      if (looksLikePhone(text) && !draft.phone) draft.phone = text.trim();
+      else if (looksLikeEmail(text) && !draft.email) draft.email = text.trim();
+      else if (!isSkip(text)) draft.address = text.trim();
+      nextRequired();
+      return;
     }
-    if (collectStep === "phone_only") { draft.phone = text; mode = "done"; collectStep = null; window.__wefixDraft = draft; addMsg("bot", "Tack. En kollega ringer upp."); }
+    if (collectStep === "phone") {
+      if (looksLikeEmail(text) && !draft.email) {
+        draft.email = text.trim();
+        if (maybeFinish()) return;
+        addMsg("bot", Q_PHONE);
+        return;
+      }
+      if (isSkip(text) || !looksLikePhone(text)) { addMsg("bot", Q_PHONE); return; }
+      draft.phone = text.trim();
+      if (maybeFinish()) return;
+      askEmail();
+      return;
+    }
+    if (collectStep === "email") {
+      if (looksLikePhone(text) && !draft.phone) {
+        draft.phone = text.trim();
+        if (maybeFinish()) return;
+        addMsg("bot", Q_EMAIL);
+        return;
+      }
+      if (isSkip(text) || !looksLikeEmail(text)) { addMsg("bot", Q_EMAIL); return; }
+      draft.email = text.trim();
+      if (maybeFinish()) return;
+      askPhone();
+    }
   }
   function queryParams() { try { return new URLSearchParams(location.search || ""); } catch (e) { return new URLSearchParams(""); } }
   function captureUtm() {
@@ -284,15 +352,6 @@
     if (wantsBuy() || draft.intent === "robot.buy") list.push(offerByCode("robot.buy"));
     return list.filter(Boolean);
   }
-  function offersForIntent(code) {
-    if (isRobotCode(code)) return robotOfferList();
-    if (code === "bygg.altan" || code === "bygg.staket" || code === "bygg.renovering") {
-      return [offerByCode("bygg.altan"), offerByCode("bygg.staket"), offerByCode("bygg.renovering")].filter(Boolean);
-    }
-    if (code === "kontakt" || code === "ovriga") return [];
-    var o = offerByCode(code);
-    return o ? [o] : [];
-  }
   function bootLanding() {
     captureUtm();
     var intent = intentFromUrl();
@@ -311,32 +370,24 @@
     if (JAIL_RE.test(t)) { addMsg("bot", "Det kan vi inte hjälpa till med här. Ring 010-33 00 640."); return; }
     if (JOBAPP_RE.test(t)) { addMsg("bot", "Kul att du vill jobba med oss. Mejla info@wefixab.se med namn och hur vi når dig. Inte ett säljärende."); return; }
     if (PRICE_RE.test(t)) {
-      if (mode === "collect" && collectStep && collectStep !== "phone_only") { addMsg("bot", "Vi sätter inget pris i chatten. En kollega hör av sig."); return; }
-      mode = "collect"; collectStep = "name"; addMsg("bot", "Vi sätter inget pris i chatten. En kollega hör av sig. Vad heter du?"); return;
-    }
-    if (HUMAN_RE.test(t) && !(mode === "collect" && collectStep && collectStep !== "phone_only")) {
-      mode = "collect"; collectStep = "phone_only"; addMsg("bot", "Självklart. Vilket nummer ska WEFIX ringa?"); return;
-    }
-    if (FAR_RE.test(t) && mode !== "collect") {
-      mode = "collect"; collectStep = "phone_only"; addMsg("bot", "Det låter lite utanför vårt vanliga område. Lämna ett nummer så hör en kollega av sig."); return;
-    }
-    if (mode === "collect" && collectStep) { collectFrom(text); return; }
-    if (mode === "done") { addMsg("bot", "Utkastet är sparat hos oss i den här rutan. Behöver du ändra något, skriv det — eller ring 010-33 00 640."); return; }
-    var found = findOffers(text);
-    if (!found.length && landingBooted && draft.intent) {
-      found = offersForIntent(draft.intent);
-    }
-    if (found.length) {
-      var robotHit = found.some(function (o) { return isRobotCode(o.code); });
-      showOffers(found, robotHit ? 3 : 1);
-      mode = "chat";
-      if (found.length === 1) addMsg("bot", "Det låter som " + found[0].title.toLowerCase() + ". Klicka på bollen eller berätta mer.");
-      else addMsg("bot", "Vi kan ta det. Klicka på en boll eller berätta mer.");
+      addMsg("bot", PRICE_LINE);
+      if (mode === "done") return;
+      if (mode === "collect" && collectStep) { addMsg("bot", currentQuestion()); return; }
+      if (committed) { beginCollect(text); return; }
+      if (landingBooted) { committed = true; beginCollect(text); return; }
       return;
     }
-    mode = "chat";
-    var asks = ["Berätta gärna mer — häck, gräs, robot eller något annat?", "Vad ska vi titta på i trädgården?", "Vilken adress gäller det, så vi vet om vi är i närheten?"];
-    addMsg("bot", asks[Math.floor(Math.random() * asks.length)]);
+    if (mode === "collect" && collectStep) { collectFrom(text); return; }
+    if (mode === "done") {
+      addMsg("bot", "Vi har tagit emot det du skrev. Ring 010-33 00 640 om du vill ändra något.");
+      return;
+    }
+    appendWhat(text);
+    if (!draft.intent) {
+      var found = findOffers(text);
+      if (found.length) draft.intent = found[0].code;
+    }
+    beginCollect(text);
   }
   form.addEventListener("submit", function (e) {
     e.preventDefault();
