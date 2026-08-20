@@ -9,23 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/landings.css">
 </head>
-<body class="home landing-robot" data-intent="robot.service">
+<body class="home has-article landing-robot" data-intent="robot.service">
   <div class="wash" aria-hidden="true"></div>
   <div class="test-banner">Testyta · inte den skarpa sajten</div>
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
-      <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
-           onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
+        <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
+             onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
+      </a>
+      <p class="tagline">Trädgård i Göteborg och Halland sedan 2003</p>
+    </div>
     <a class="phone" href="tel:0103300640">010-33 00 640</a>
   </header>
-  <h1 class="seo-h1">Robotgräsklippare</h1>
   <main class="stage">
     <div class="orb orb-main" id="main-orb">
       <div class="orb-inner">
         <div class="messages" id="messages">
-          <p class="msg bot greeting">Hej! Du tittar på robotgräsklippare. Service, vinter eller köpa?</p>
+          <p class="msg bot greeting">Hej! Hur vill du ha hjälp med roboten — service, vinter eller köpa?</p>
           <p class="privacy-line" id="privacy-line">Du pratar med en AI. Vi tar emot det du skriver för att kunna hjälpa dig.</p>
         </div>
         <form class="composer" id="composer" autocomplete="off">
@@ -41,17 +44,46 @@
     </div>
     <div class="offers" id="offers"></div>
   </main>
+    <article class="landing-article">
+      <h1>Robotgräsklippare</h1>
+        <img class="shot" src="assets/img/gras.jpg" alt="Gräsmatta som sköts med robotgräsklippare" width="1200" height="600" loading="lazy">
+        <p>WEFIX servar robotgräsklippare i Göteborgsområdet — Göteborg, Mölndal, Borås, Alingsås, Kungälv och Kungsbacka, och vidare i vårt vanliga område.</p>
+        <p>Basservice: du lämnar roboten hos oss på Sandövägen 23 i Vallda efter säsongen. Vi servar, du hämtar och förvarar hemma, och startar själv på våren.</p>
+        <p>Hemservice: vi kommer hem till dig, servar på plats och lämnar tillbaka samma dag. Du förvarar själv över vintern. Lyxservice: vi hämtar, servar, förvarar och laddar batteriet under baget, och kör ut och startar på våren.</p>
+        <p>Du kan också fråga om att köpa. Säg vilken robot du har. Inga paketpriser i chatten — en kollega hör av sig.</p>
+      <p><a class="to-chat" href="#main-orb">Skriv i bollen</a> så tar vi det. Inga priser här.</p>
+      <h2>Vanliga frågor</h2>
+        <dl class="faq">
+          <dt>Service, vinter eller köpa?</dt>
+          <dd>Klicka på en boll i chatten. De syns direkt — basservice, hemservice, lyx, och köpa om du kom den vägen.</dd>
+          <dt>Vilken robot tar ni?</dt>
+          <dd>Säg modell i bollen. Vi utgår från det du har, inte från en enda tillverkare i chatten.</dd>
+          <dt>Var lämnar jag roboten?</dt>
+          <dd>Basservice är i Vallda. Hem- och lyxservice hämtar eller gör jobbet hos dig.</dd>
+        </dl>
+      <h2>Område</h2>
+      <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
+      <p class="nap">WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i bollen eller ring 010-33 00 640.</p>
+    </article>
   <footer class="site-footer">
-    <a href="integritet.html">Integritet</a>
+    <nav class="foot-services" aria-label="Tjänster">
+    <a href="markarbete.html">Markarbete</a>
+    <a href="tradfallning.html">Trädfällning</a>
+    <a href="plantering.html">Plantering</a>
+    <a href="hackklippning.html">Häckklippning</a>
+    <a href="anlaggning.html">Anläggning</a>
+    <a href="grasklippning.html">Gräsklippning</a>
+    <a href="beskarning.html">Beskärning</a>
+    <a href="wefix-bygg.html">WeFix Bygg</a>
+    <a href="ograsrensning.html">Ogräsrensning</a>
+    <a href="snorodjning.html">Snöröjning</a>
+    <a href="lovkrattning.html">Lövkrattning</a>
+    <a href="robotgrasklippare.html">Robotgräsklippare</a>
+    <a href="ovriga-tjanster.html">Övriga tjänster</a>
+    </nav>
+    <p class="foot-meta"><a href="integritet.html">Integritet</a> · <a href="tel:0103300640">010-33 00 640</a> · Vallda · Sävedalen · Varberg</p>
     <span class="badge">Utkast · inte wefixtradgard.se</span>
   </footer>
-  <aside class="seo-block">
-    <h2>Robotgräsklippare</h2>
-    <p>WEFIX sköter service, vinterförvaring och uppstart av robotgräsklippare. Basservice, hemservice eller lyx. Du kan också fråga om att köpa. Säg vilken robot du har. En kollega hör av sig.</p>
-    <h2>Område</h2>
-    <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
-    <p>WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i chatten så tar en kollega det. Inga priser här.</p>
-  </aside>
   <script src="assets/js/chat.js"></script>
 </body>
 </html>
