@@ -170,7 +170,10 @@
     });
   }
   function isRobotCode(code) { return String(code || "").indexOf("robot.") === 0; }
-  function mentionsRobot(raw) { return /\brobot\b|automower|robotgräs|robotgras/.test(String(raw || "").toLowerCase()); }
+  function mentionsRobot(raw) {
+    var t = String(raw || "").toLowerCase();
+    return t.indexOf("robot") !== -1 || t.indexOf("automower") !== -1;
+  }
   function appendWhat(text) {
     if (!text) return;
     if (draft.what) draft.what = draft.what + ". " + text; else draft.what = text;
