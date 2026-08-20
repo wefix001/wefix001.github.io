@@ -189,7 +189,7 @@ body.home:not(.has-article) .stage {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: url("../img/orb-glass.png?v=15") center / 100% 100% no-repeat;
+  background: url("../img/orb-glass.png?v=16") center / 100% 100% no-repeat;
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: normal;
