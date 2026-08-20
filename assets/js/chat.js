@@ -297,13 +297,7 @@
     draft.intent = intent;
     if (land.what) draft.what = land.what;
     landingBooted = true;
-    startChat();
     setGreeting(land.greeting);
-    var cards = offersForIntent(intent);
-    if (cards.length) showOffers(cards, isRobotCode(intent) ? 4 : 3);
-    mode = "collect";
-    collectStep = isRobotCode(intent) ? "robot_choice" : "detail";
-    input.focus();
   }
   function reply(text) {
     var t = text.toLowerCase();
@@ -322,8 +316,12 @@
     if (mode === "collect" && collectStep) { collectFrom(text); return; }
     if (mode === "done") { addMsg("bot", "Utkastet är sparat hos oss i den här rutan. Behöver du ändra något, skriv det — eller ring 010-33 00 640."); return; }
     var found = findOffers(text);
+    if (!found.length && landingBooted && draft.intent) {
+      found = offersForIntent(draft.intent);
+    }
     if (found.length) {
-      showOffers(found);
+      var robotHit = found.some(function (o) { return isRobotCode(o.code); });
+      showOffers(found, robotHit ? 3 : 1);
       mode = "chat";
       if (found.length === 1) addMsg("bot", "Det låter som " + found[0].title.toLowerCase() + ". Klicka på bollen eller berätta mer.");
       else addMsg("bot", "Vi kan ta det. Klicka på en boll eller berätta mer.");
