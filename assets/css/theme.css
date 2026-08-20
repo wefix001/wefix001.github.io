@@ -194,19 +194,20 @@ body.home:not(.has-article) .stage {
   inset: 0;
   border-radius: 50%;
   background:
-    radial-gradient(ellipse 48% 38% at 18% 12%,
+    radial-gradient(ellipse 30% 24% at 20% 14%,
       #ffffff 0%,
-      #ffffff 18%,
-      rgba(255,255,255,0.92) 32%,
-      rgba(255,255,255,0.42) 50%,
+      #ffffff 26%,
+      rgba(255,255,255,0.82) 46%,
+      rgba(255,255,255,0.22) 64%,
+      rgba(255,255,255,0) 76%),
+    radial-gradient(ellipse 54% 44% at 19% 13%,
+      rgba(255,255,255,0.50) 0%,
+      rgba(255,255,255,0.16) 42%,
       rgba(255,255,255,0) 68%),
-    radial-gradient(ellipse 16% 12% at 44% 20%,
+    radial-gradient(ellipse 13% 10% at 46% 22%,
       rgba(255,255,255,0.95) 0%,
-      rgba(255,255,255,0.35) 48%,
-      rgba(255,255,255,0) 74%),
-    radial-gradient(ellipse 40% 8% at 22% 14%,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0) 72%);
+      rgba(255,255,255,0.30) 50%,
+      rgba(255,255,255,0) 74%);
   pointer-events: none;
   z-index: 2;
 }
