@@ -1,6 +1,6 @@
 /* WEFIX Trädgård — testyta. Ingen skarp sajt. */
 :root {
-  --garden: linear-gradient(165deg,#e8f0dc 0%,#c5d9a8 40%,#9cbc6a 75%,#7a9e4a 100%);
+  --garden: url("../img/garden-bg.svg");
   --lime: #A7DA3B;
   --lime-dark: #8fc42a;
   --ink: #1c1c1c;
@@ -20,7 +20,7 @@ body {
   min-height: 100%;
   font-family: var(--font);
   color: var(--ink);
-  background: #eef3e8 var(--garden) center / cover no-repeat fixed;
+  background: #eef3e8 var(--garden) center / cover no-repeat;
   line-height: 1.5;
 }
 
@@ -432,7 +432,7 @@ body.landing-ovriga,
 body.landing-bygg {
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 body.landing-robot { background-position: 35% 28%; }
@@ -468,3 +468,26 @@ body.landing-trad .wash { background: rgba(236, 242, 228, 0.16); }
 body.landing-plantera .wash { background: rgba(232, 246, 230, 0.16); }
 body.landing-ogras .wash { background: rgba(238, 244, 220, 0.16); }
 body.landing-ovriga .wash { background: rgba(244, 244, 236, 0.16); }
+
+@media (min-width: 768px) {
+  body {
+    background-attachment: fixed;
+  }
+  body.landing-robot,
+  body.landing-hack,
+  body.landing-grass,
+  body.landing-snow,
+  body.landing-altan,
+  body.landing-beskar,
+  body.landing-anlagg,
+  body.landing-host,
+  body.landing-brf,
+  body.landing-mark,
+  body.landing-trad,
+  body.landing-plantera,
+  body.landing-ogras,
+  body.landing-ovriga,
+  body.landing-bygg {
+    background-attachment: fixed;
+  }
+}
