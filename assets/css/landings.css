@@ -109,3 +109,8 @@ body.has-article .stage {
   .landing-article { padding: 22px 18px 26px; }
   .foot-services { font-size: 11px; }
 }
+
+/* Start page chrome: mockup — no tagline, no 13-link footer */
+body.home:not(.has-article) .tagline { display: none; }
+body.home:not(.has-article) .foot-services { display: none; }
+body.home:not(.has-article) .badge { display: none; }
