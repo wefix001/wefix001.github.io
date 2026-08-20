@@ -73,25 +73,25 @@
   };
 
   var LANDINGS = {
-    "robot.service": { greeting: "Hej! Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hej! Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Robotgräsklippare" },
-    "robot.buy": { greeting: "Hej! Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hej! Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Köpa robot" },
-    "garden.hack": { greeting: "Hej! Hur vill du ha hjälp med häcken — längd, höjd, när?", ask: "Hej! Hur vill du ha hjälp med häcken — längd, höjd, när?", what: "Häckklippning" },
-    "garden.gras": { greeting: "Hej! Hur vill du ha hjälp med gräset — en gång, abonnemang, när?", ask: "Hej! Hur vill du ha hjälp med gräset — en gång, abonnemang, när?", what: "Gräsklippning" },
-    "garden.sno": { greeting: "Hej! Hur vill du ha hjälp med snön — privat, BRF, hur ofta?", ask: "Hej! Hur vill du ha hjälp med snön — privat, BRF, hur ofta?", what: "Snöröjning" },
-    "garden.altan": { greeting: "Hej! Hur vill du ha hjälp med altanen — ungefär hur stor är ytan?", ask: "Hej! Hur vill du ha hjälp med altanen — ungefär hur stor är ytan?", what: "Altantvätt" },
-    "garden.beskar": { greeting: "Hej! Hur vill du ha hjälp med beskärningen — buskar, träd, när?", ask: "Hej! Hur vill du ha hjälp med beskärningen — buskar, träd, när?", what: "Beskärning" },
-    "garden.anlaggning": { greeting: "Hej! Hur vill du ha hjälp med ny gräsmatta — rulle, sådd, platsbesök?", ask: "Hej! Hur vill du ha hjälp med ny gräsmatta — rulle, sådd, platsbesök?", what: "Anläggning" },
-    "garden.mark": { greeting: "Hej! Hur vill du ha hjälp med markarbetet — sten, mur eller schakt?", ask: "Hej! Hur vill du ha hjälp med markarbetet — sten, mur eller schakt?", what: "Markarbete" },
-    "garden.trad": { greeting: "Hej! Hur vill du ha hjälp med trädet — fälla, forsla bort virket?", ask: "Hej! Hur vill du ha hjälp med trädet — fälla, forsla bort virket?", what: "Trädfällning" },
-    "garden.plantera": { greeting: "Hej! Hur vill du ha hjälp med planteringen — blommor, buskar eller träd?", ask: "Hej! Hur vill du ha hjälp med planteringen — blommor, buskar eller träd?", what: "Plantering" },
-    "garden.ogras": { greeting: "Hej! Hur vill du ha hjälp med ogräset — rabatt eller mellan sten?", ask: "Hej! Hur vill du ha hjälp med ogräset — rabatt eller mellan sten?", what: "Ogräsrensning" },
-    "ovriga": { greeting: "Hej! Vad behöver du hjälp med — berätta kort vad vi ska ta?", ask: "Hej! Vad behöver du hjälp med — berätta kort vad vi ska ta?", what: "Övriga tjänster" },
-    "host.stad": { greeting: "Hej! Hur vill du ha hjälp i höst — löv, rabatter, infart?", ask: "Hej! Hur vill du ha hjälp i höst — löv, rabatter, infart?", what: "Höststädning" },
-    "brf": { greeting: "Hej! Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", ask: "Hej! Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", what: "BRF-skötsel" },
-    "bygg.altan": { greeting: "Hej! Hur vill du ha hjälp av WEFIX Bygg — altan, staket, dränering eller renovering?", ask: "Hej! Hur vill du ha hjälp av WEFIX Bygg — altan, staket, dränering eller renovering?", what: "WEFIX Bygg" },
-    "bygg.staket": { greeting: "Hej! Hur långt ska staketet vara, och när?", ask: "Hej! Hur långt ska staketet vara, och när?", what: "Staket" },
-    "bygg.renovering": { greeting: "Hej! Vad ska vi titta på — och när?", ask: "Hej! Vad ska vi titta på — och när?", what: "Renovering" },
-    "kontakt": { greeting: "Hej! Vad kan vi hjälpa dig med?", ask: "Hej! Vad kan vi hjälpa dig med?", what: "" }
+    "robot.service": { greeting: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Robotgräsklippare" },
+    "robot.buy": { greeting: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", ask: "Hur vill du ha hjälp med roboten — service, vinter eller köpa?", what: "Köpa robot" },
+    "garden.hack": { greeting: "Hur vill du ha hjälp med häcken — längd, höjd eller när?", ask: "Hur vill du ha hjälp med häcken — längd, höjd eller när?", what: "Häckklippning" },
+    "garden.gras": { greeting: "Ska vi klippa gräset — en gång eller löpande?", ask: "Ska vi klippa gräset — en gång eller löpande?", what: "Gräsklippning" },
+    "garden.sno": { greeting: "Ska vi ta snön — villa, BRF eller hur ofta?", ask: "Ska vi ta snön — villa, BRF eller hur ofta?", what: "Snöröjning" },
+    "garden.altan": { greeting: "Ska vi tvätta altanen? Ungefär hur stor är ytan?", ask: "Ska vi tvätta altanen? Ungefär hur stor är ytan?", what: "Altantvätt" },
+    "garden.beskar": { greeting: "Ska vi beskära — buskar, träd eller när?", ask: "Ska vi beskära — buskar, träd eller när?", what: "Beskärning" },
+    "garden.anlaggning": { greeting: "Ny gräsmatta — rulle, sådd eller platsbesök?", ask: "Ny gräsmatta — rulle, sådd eller platsbesök?", what: "Anläggning" },
+    "garden.mark": { greeting: "Markarbete — sten, mur eller schakt?", ask: "Markarbete — sten, mur eller schakt?", what: "Markarbete" },
+    "garden.trad": { greeting: "Ska vi fälla trädet? Ska virket forslas bort?", ask: "Ska vi fälla trädet? Ska virket forslas bort?", what: "Trädfällning" },
+    "garden.plantera": { greeting: "Plantering — blommor, buskar eller träd?", ask: "Plantering — blommor, buskar eller träd?", what: "Plantering" },
+    "garden.ogras": { greeting: "Ogräs — i rabatt eller mellan sten?", ask: "Ogräs — i rabatt eller mellan sten?", what: "Ogräsrensning" },
+    "ovriga": { greeting: "Vad ska vi ta? Skriv kort vad det gäller.", ask: "Vad ska vi ta? Skriv kort vad det gäller.", what: "Övriga tjänster" },
+    "host.stad": { greeting: "Höststädning — löv, rabatter eller infart?", ask: "Höststädning — löv, rabatter eller infart?", what: "Höststädning" },
+    "brf": { greeting: "Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", ask: "Hur vill ni ha hjälp i föreningen — grönt, snö eller komplett?", what: "BRF-skötsel" },
+    "bygg.altan": { greeting: "WEFIX Bygg — altan, staket, dränering eller renovering?", ask: "WEFIX Bygg — altan, staket, dränering eller renovering?", what: "WEFIX Bygg" },
+    "bygg.staket": { greeting: "Hur långt ska staketet vara, och när?", ask: "Hur långt ska staketet vara, och när?", what: "Staket" },
+    "bygg.renovering": { greeting: "Vad ska vi titta på — och när?", ask: "Vad ska vi titta på — och när?", what: "Renovering" },
+    "kontakt": { greeting: "Vad kan vi hjälpa dig med?", ask: "Vad kan vi hjälpa dig med?", what: "" }
   };
 
   var PRICE_RE = /pris|kostar|kostnad|hur mycket|vad kostar|kronor|offertpris|dyrt|billigt/;
