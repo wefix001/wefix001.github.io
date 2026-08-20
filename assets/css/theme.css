@@ -294,13 +294,15 @@ body.home.has-article .messages,
   font-weight: 500;
 }
 .msg.greeting {
-  font-size: clamp(17px, 3.6vw, 21px);
+  font-size: clamp(15px, 3.1vw, 18px);
   font-weight: 500;
   color: var(--ink-soft);
   text-align: center;
-  line-height: 1.35;
-  margin: 0 0 16px;
+  line-height: 1.3;
+  margin: 0 0 14px;
   overflow: hidden;
+  max-width: 100%;
+  text-wrap: balance;
 }
 
 .privacy-line {
@@ -541,7 +543,7 @@ th { font-weight: 650; }
   }
   .orb-inner { padding: 17% 16%; overflow: hidden; }
   .messages { overflow: hidden; }
-  .msg.greeting { font-size: 16px; margin: 0 0 12px; overflow: hidden; }
+  .msg.greeting { font-size: 14.5px; margin: 0 0 10px; overflow: hidden; }
   .offers { overflow: visible; gap: 10px 12px; }
   .orb-offer,
   .orb-wrap:has(> .orb-offer) {
