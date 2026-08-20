@@ -9,23 +9,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/landings.css">
 </head>
-<body class="home landing-plantera" data-intent="garden.plantera">
+<body class="home has-article landing-plantera" data-intent="garden.plantera">
   <div class="wash" aria-hidden="true"></div>
   <div class="test-banner">Testyta · inte den skarpa sajten</div>
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
-      <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
-           onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
-    </a>
+    <div class="brand">
+      <a class="logo" href="index.html" aria-label="WEFIX Trädgård, till start">
+        <img src="assets/img/wefix-logo.svg" alt="WEFIX Trädgård" width="140" height="72"
+             onerror="this.onerror=null;this.src='assets/img/wefix-logo.png'">
+      </a>
+      <p class="tagline">Trädgård i Göteborg och Halland sedan 2003</p>
+    </div>
     <a class="phone" href="tel:0103300640">010-33 00 640</a>
   </header>
-  <h1 class="seo-h1">Plantering</h1>
   <main class="stage">
     <div class="orb orb-main" id="main-orb">
       <div class="orb-inner">
         <div class="messages" id="messages">
-          <p class="msg bot greeting">Hej! Plantering. Vad ska i jorden?</p>
+          <p class="msg bot greeting">Hej! Hur vill du ha hjälp med planteringen — blommor, buskar eller träd?</p>
           <p class="privacy-line" id="privacy-line">Du pratar med en AI. Vi tar emot det du skriver för att kunna hjälpa dig.</p>
         </div>
         <form class="composer" id="composer" autocomplete="off">
@@ -41,17 +44,45 @@
     </div>
     <div class="offers" id="offers"></div>
   </main>
+    <article class="landing-article">
+      <h1>Plantering</h1>
+        <img class="shot" src="assets/img/foto-c1a.jpg" alt="Plantering i trädgård" width="1200" height="600" loading="lazy">
+        <p>Plantering är grunden till en trädgård som känns grön. Rätt gjort lyfter ofta hela tomten. Våra trädgårdsmästare ritar från grunden så att det passar omgivningen — eller fräschar upp rabatter som fallit i glömska.</p>
+        <p>Vi sätter allt från småblommor till stora träd. Krukor går också bra.</p>
+        <p>Boka gärna ett möte så går vi igenom hur vi hjälper bäst. Har du rådjur, sniglar eller annat skadedjur? Säg till på plats så tar vi fram ett sätt att motverka det.</p>
+      <p><a class="to-chat" href="#main-orb">Skriv i bollen</a> så tar en kollega det. Inga priser här.</p>
+      <h2>Vanliga frågor</h2>
+        <dl class="faq">
+          <dt>Vad kan ni plantera?</dt>
+          <dd>Från blomma till träd, och krukor. Säg vad som ska i jorden.</dd>
+          <dt>Har ni växterna?</dt>
+          <dd>Vi kan ta fram det som ska i jorden. Det går vi igenom vid besök.</dd>
+          <dt>Gör ni om gamla rabatter?</dt>
+          <dd>Ja. Både nytt från grunden och uppryckning av det som finns.</dd>
+        </dl>
+      <h2>Område</h2>
+      <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
+      <p class="nap">WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i bollen eller ring 010-33 00 640.</p>
+    </article>
   <footer class="site-footer">
-    <a href="integritet.html">Integritet</a>
+    <nav class="foot-services" aria-label="Tjänster">
+    <a href="markarbete.html">Markarbete</a>
+    <a href="tradfallning.html">Trädfällning</a>
+    <a href="plantering.html">Plantering</a>
+    <a href="hackklippning.html">Häckklippning</a>
+    <a href="anlaggning.html">Anläggning</a>
+    <a href="grasklippning.html">Gräsklippning</a>
+    <a href="beskarning.html">Beskärning</a>
+    <a href="wefix-bygg.html">WeFix Bygg</a>
+    <a href="ograsrensning.html">Ogräsrensning</a>
+    <a href="snorodjning.html">Snöröjning</a>
+    <a href="lovkrattning.html">Lövkrattning</a>
+    <a href="robotgrasklippare.html">Robotgräsklippare</a>
+    <a href="ovriga-tjanster.html">Övriga tjänster</a>
+    </nav>
+    <p class="foot-meta"><a href="integritet.html">Integritet</a> · <a href="tel:0103300640">010-33 00 640</a> · Vallda · Sävedalen · Varberg</p>
     <span class="badge">Utkast · inte wefixtradgard.se</span>
   </footer>
-  <aside class="seo-block">
-    <h2>Plantering</h2>
-    <p>Nytt eller fräscha upp. Från blomma till träd. Säg vad som ska i jorden. En kollega hör av sig. Inget pris i chatten.</p>
-    <h2>Område</h2>
-    <p>Vi utgår från Göteborg, Kungsbacka och Varberg och tar hela Halland plus västerut upp till Stenungsund, och in mot Alingsås och Borås. Bor du däremellan går det bra — vi nekar inte luckorna.</p>
-    <p>WEFIX Trädgård AB · 010-33 00 640 · Vallda, Sävedalen, Varberg. Skriv i chatten så tar en kollega det. Inga priser här.</p>
-  </aside>
   <script src="assets/js/chat.js"></script>
 </body>
 </html>
