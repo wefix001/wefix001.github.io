@@ -172,7 +172,7 @@ body.home:not(.has-article) .stage {
   background: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   box-shadow: none;
   overflow: hidden;
   clip-path: circle(50%);
@@ -187,7 +187,7 @@ body.home:not(.has-article) .stage {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: url("../img/orb-glass.png?v=18") center / 100% 100% no-repeat;
+  background: url("../img/orb-glass.png?v=19") center / 100% 100% no-repeat;
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: normal;
