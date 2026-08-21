@@ -181,13 +181,13 @@ body.home:not(.has-article) .stage {
   width: 100%;
   height: 100%;
 }
-/* Hairline iridescent rim + tiny specular. Transparent center. Below text. */
+/* Iridescent rim + top specular film. Transparent center. Below text. */
 .orb::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: url("../img/orb-glass.png?v=19") center / 100% 100% no-repeat;
+  background: url("../img/orb-glass.png?v=20") center / 100% 100% no-repeat;
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: normal;
