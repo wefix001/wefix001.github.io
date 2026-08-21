@@ -121,8 +121,7 @@ body.home:not(.has-article) .stage {
   min-height: calc(100dvh - 88px);
 }
 
-/* Ground shadow lives on the wrap so overflow/clip on .orb cannot hide it.
-   No filter/transform here — those would kill backdrop-filter on the sphere. */
+/* Almost-gone ground mark — no drop-shadow volume under the bubble. */
 .orb-wrap {
   position: relative;
   flex-shrink: 0;
@@ -133,21 +132,20 @@ body.home:not(.has-article) .stage {
 .orb-wrap::after {
   content: "";
   position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: -28%;
-  height: 22%;
+  left: 22%;
+  right: 22%;
+  bottom: -6%;
+  height: 7%;
   border-radius: 50%;
   background: radial-gradient(ellipse at 50% 40%,
-    rgba(50, 54, 48, 0.26) 0%,
-    rgba(50, 54, 48, 0.12) 42%,
-    rgba(50, 54, 48, 0.04) 64%,
-    rgba(50, 54, 48, 0) 80%);
+    rgba(50, 54, 48, 0.045) 0%,
+    rgba(50, 54, 48, 0.018) 48%,
+    rgba(50, 54, 48, 0) 74%);
   pointer-events: none;
   z-index: 0;
 }
 .orb-wrap:has(> .orb-main) {
-  --orb-size: min(440px, 86vw);
+  --orb-size: min(528px, 92vw, 74vh);
   width: var(--orb-size);
   height: var(--orb-size);
 }
@@ -162,7 +160,7 @@ body.home:not(.has-article) .stage {
   border-radius: 50%;
 }
 
-/* Light soap-bubble — PNG chrome (thin white rim + UR glint). Slight soften, no milk. */
+/* Soap bubble — see-through film. Hairline rim + PNG edge glint. No milk, no wash. */
 .orb {
   position: relative;
   z-index: 1;
@@ -172,12 +170,10 @@ body.home:not(.has-article) .stage {
   border-radius: 50%;
   flex-shrink: 0;
   background: transparent;
-  backdrop-filter: blur(2px) saturate(106%);
-  -webkit-backdrop-filter: blur(2px) saturate(106%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.42);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.22),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  box-shadow: none;
   overflow: hidden;
   clip-path: circle(50%);
 }
@@ -185,13 +181,13 @@ body.home:not(.has-article) .stage {
   width: 100%;
   height: 100%;
 }
-/* Crisp PNG chrome — full-bleed, below text. Highlight stays white. */
+/* Hairline iridescent rim + tiny specular. Transparent center. Below text. */
 .orb::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: url("../img/orb-glass.png?v=17") center / 100% 100% no-repeat;
+  background: url("../img/orb-glass.png?v=18") center / 100% 100% no-repeat;
   pointer-events: none;
   z-index: 2;
   mix-blend-mode: normal;
@@ -201,7 +197,7 @@ body.home:not(.has-article) .stage {
 }
 
 .orb-main {
-  --orb-size: min(440px, 86vw);
+  --orb-size: min(528px, 92vw, 74vh);
   width: var(--orb-size);
   height: var(--orb-size);
   aspect-ratio: 1 / 1;
@@ -499,7 +495,7 @@ th { font-weight: 650; }
   body.page .wash { background: rgba(255, 255, 255, 0.18); }
   .orb-main,
   .orb-wrap:has(> .orb-main) {
-    --orb-size: min(320px, 84vw);
+    --orb-size: min(384px, 92vw, 72vh);
     width: var(--orb-size);
     height: var(--orb-size);
     aspect-ratio: 1 / 1;
@@ -529,7 +525,7 @@ th { font-weight: 650; }
 @media (max-width: 400px) {
   .orb-main,
   .orb-wrap:has(> .orb-main) {
-    --orb-size: min(300px, 82vw);
+    --orb-size: min(360px, 90vw, 70vh);
     width: var(--orb-size);
     height: var(--orb-size);
     aspect-ratio: 1 / 1;
@@ -540,7 +536,7 @@ th { font-weight: 650; }
 @media (max-height: 700px) {
   .orb-main,
   .orb-wrap:has(> .orb-main) {
-    --orb-size: min(300px, 78vw, 68vh);
+    --orb-size: min(360px, 90vw, 72vh);
     width: var(--orb-size);
     height: var(--orb-size);
     aspect-ratio: 1 / 1;
@@ -564,7 +560,7 @@ th { font-weight: 650; }
 @media (max-height: 640px) {
   .orb-main,
   .orb-wrap:has(> .orb-main) {
-    --orb-size: min(260px, 72vw, 58vh);
+    --orb-size: min(312px, 86vw, 68vh);
     width: var(--orb-size);
     height: var(--orb-size);
     aspect-ratio: 1 / 1;
